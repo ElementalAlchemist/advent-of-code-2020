@@ -60,9 +60,6 @@ fn main() {
 			InstructionType::NoOp => InstructionType::Jump,
 		};
 
-		let mut instructions = instructions.clone();
-		instructions[line].inst_type = new_instruction_type;
-
 		let mut visited_nodes: HashSet<usize> = HashSet::new();
 		let mut current_node: usize = 0;
 		let mut accumulator_value: i32 = 0;
@@ -70,7 +67,12 @@ fn main() {
 		let finished_program = loop {
 			visited_nodes.insert(current_node);
 			let current_instruction = &instructions[current_node];
-			match current_instruction.inst_type {
+			let current_instruction_type = if line == current_node {
+				&new_instruction_type
+			} else {
+				&current_instruction.inst_type
+			};
+			match current_instruction_type {
 				InstructionType::Accumulate => {
 					accumulator_value += current_instruction.val;
 					current_node += 1;
