@@ -10,7 +10,7 @@ fn main() {
 		.map(|s| if s == "x" { None } else { Some(s.parse().unwrap()) })
 		.collect();
 
-	let mut time_jump: u128 = 23;
+	let mut time_jump: u128 = buses[0].unwrap();
 	let mut last_time_jump_index: usize = 0;
 	let mut time: u128 = 0;
 	'time: loop {
