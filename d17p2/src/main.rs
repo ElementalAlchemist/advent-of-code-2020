@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::fs;
 
 #[derive(Clone, Eq, Hash, PartialEq)]
@@ -25,7 +25,7 @@ impl Coordinates {
 
 fn cycle_cubes(start_cubes: &HashMap<Coordinates, bool>) -> HashMap<Coordinates, bool> {
 	let mut changes: HashMap<Coordinates, bool> = HashMap::new();
-	let coords_to_check: Vec<Coordinates> = start_cubes
+	let coords_to_check: HashSet<Coordinates> = start_cubes
 		.keys()
 		.map(|coords| {
 			let mut all_coords = Vec::with_capacity(9);
